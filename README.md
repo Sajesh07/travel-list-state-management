@@ -1,70 +1,172 @@
-# Getting Started with Create React App
+## Travel List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple React app to plan and track items for your trips. Add items with a quantity, mark them as packed, sort the list, clear all items, and see progress stats.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+### Features
 
-### `npm start`
+- **Add items**: Enter a description and choose a quantity (1–20).
+- **Toggle packed**: Mark items as packed/unpacked via checkbox.
+- **Delete items**: Remove any item individually.
+- **Sort options**: By input order, description, or packed status.
+- **Clear all**: Delete all items with a confirmation prompt.
+- **Live stats**: Total items, packed items, and percentage packed.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Tech Stack
 
-### `npm test`
+- **React 19** (functional components, hooks)
+- **Create React App (CRA)** for build/dev tooling
+- **CSS** for styling
+- **Testing Library** dependencies included by CRA template
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+### Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+packing-list-app/
+├── public/ # Static assets
+├── src/ # Source code
+│ ├── components/ # React components
+│ └── App.js # Main app component
+│ └── index.js # Index component
+│ └── index.css # CSS Style component
+├── README.md # Project documentation
+├── package.json # Project dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```markdown
+## Travel List
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A simple React app to plan and track items for your trips. Add items with a quantity, mark them as packed, sort the list, clear all items, and see progress stats.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Add items**: Enter a description and choose a quantity (1–20).
+- **Toggle packed**: Mark items as packed/unpacked via checkbox.
+- **Delete items**: Remove any item individually.
+- **Sort options**: By input order, description, or packed status.
+- **Clear all**: Delete all items with a confirmation prompt.
+- **Live stats**: Total items, packed items, and percentage packed.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Tech Stack
 
-## Learn More
+- **React 19** (functional components, hooks)
+- **Create React App (CRA)** for build/dev tooling
+- **CSS** for styling
+- **Testing Library** dependencies included by CRA template
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Project Structure
+```
 
-### Code Splitting
+src/
+components/
+App.js // App state + orchestration
+Form.js // Add item form
+PackingList.js // List + sorting + clear action
+Item.js // Single item (toggle/delete)
+Logo.js // App title
+Stats.js // Footer stats
+index.css // Global styles
+index.js // App bootstrap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+````
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### How It Works
 
-### Making a Progressive Web App
+- **App.js**
+  - Manages `items` state: `[{ id, description, quantity, packed }]`
+  - Handlers:
+    - `handleAddItems(item)`: add a new item
+    - `handleDeleteItem(id)`: remove by id
+    - `handleToggleItem(id)`: toggle `packed`
+    - `handleClearList()`: confirm and clear all items
+  - Renders `Logo`, `Form`, `PackingList`, `Stats`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Form.js**
+  - Local state: `description`, `quantity`
+  - On submit: creates `{ id: Date.now(), description, quantity, packed: false }`
+  - Resets inputs after adding
 
-### Advanced Configuration
+- **PackingList.js**
+  - Local state: `sortBy` (`input` | `description` | `packed`)
+  - Sorts items accordingly
+  - Renders items and a clear-all button
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Item.js**
+  - Checkbox toggles `packed`
+  - Delete button removes the item
+  - Strikethrough styling when `packed === true`
 
-### Deployment
+- **Stats.js**
+  - If empty, shows a friendly prompt to add items
+  - Shows counts and percent packed
+  - Special message when 100% packed
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+### Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+From the project root:
+
+```bash
+npm install
+npm start
+````
+
+- `npm start` — run the app in development at `http://localhost:3000`
+- `npm run build` — build for production
+- `npm test` — run tests
+- `npm run eject` — eject CRA config (irreversible)
+
+---
+
+### Requirements
+
+- **Node.js 18+** recommended
+- **npm 8+**
+
+---
+
+### Styling
+
+- Google Fonts: Monoton, Quicksand
+- Responsive grid for list items
+- Accessible checkbox controls
+- High-contrast, clear buttons and controls
+
+---
+
+### Notes
+
+- Items are stored in-memory only; a page refresh clears the list.
+- Item ids are generated via `Date.now()` for this demo.
+
+---
+
+### Possible Improvements
+
+- Persist items to `localStorage`
+- Keyboard accessibility improvements
+- Edit existing items
+- Grouping, filtering, and search
+- Component/unit tests
+
+---
+
+### License
+
+MIT
+
+````
+Happy packing! 🎒 ```
+````
