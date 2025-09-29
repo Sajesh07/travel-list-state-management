@@ -37,48 +37,6 @@ packing-list-app/
 ├── package.json # Project dependencies
 
 ```markdown
-## Travel List
-
-A simple React app to plan and track items for your trips. Add items with a quantity, mark them as packed, sort the list, clear all items, and see progress stats.
-
----
-
-### Features
-
-- **Add items**: Enter a description and choose a quantity (1–20).
-- **Toggle packed**: Mark items as packed/unpacked via checkbox.
-- **Delete items**: Remove any item individually.
-- **Sort options**: By input order, description, or packed status.
-- **Clear all**: Delete all items with a confirmation prompt.
-- **Live stats**: Total items, packed items, and percentage packed.
-
----
-
-### Tech Stack
-
-- **React 19** (functional components, hooks)
-- **Create React App (CRA)** for build/dev tooling
-- **CSS** for styling
-- **Testing Library** dependencies included by CRA template
-
----
-
-### Project Structure
-```
-
-src/
-components/
-App.js // App state + orchestration
-Form.js // Add item form
-PackingList.js // List + sorting + clear action
-Item.js // Single item (toggle/delete)
-Logo.js // App title
-Stats.js // Footer stats
-index.css // Global styles
-index.js // App bootstrap
-
-````
-
 ---
 
 ### How It Works
